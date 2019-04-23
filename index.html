@@ -39,6 +39,8 @@
             addEventListener("paste" , function(e){
                 e.preventDefault();
                 var html_data = e.clipboardData.getData("text/html");
+                html_data = html_data.split(">").join(">\r\n");
+                html_data = html_data.split("</").join("\r\n</");
                 outputElement.value = html_data;
                 prevElement.innerHTML = html_data;
             });
