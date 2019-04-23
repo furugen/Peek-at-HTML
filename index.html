@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>コピペ時のHTML解析</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="jquery-linedtextarea/jquery-linedtextarea.js"></script>
+    <link href="jquery-linedtextarea/jquery-linedtextarea.css" type="text/css" rel="stylesheet" />
+    <style>
+
+        </style>
+</head>
+
+<body>
+    <div style="width:80%;margin: auto;margin-top: 30px">
+        <h1>ペースト時のHTML解析</h1>
+            <hr>
+            <div>
+                    HTML構成を確認したいものをコピーして、ペーストしてください。
+            </div>
+        <hr>
+        <div style="padding-left: 12px;padding-right: 12px">
+            <textarea id="htmlCodeArea" class="lined"  style="width:100%; height:400px;"></textarea>
+        </div>
+        <hr style="margin-top: 40px">
+        <div >
+            プレビューエリア
+        </div>
+        <hr>
+        <div>
+            <div id="previewArea">
+            </div>
+        </div>
+    </div>
+
+    <script>
+            var prevElement = document.getElementById("previewArea");
+            var outputElement = document.getElementById("htmlCodeArea");
+            addEventListener("paste" , function(e){
+                e.preventDefault();
+                var html_data = e.clipboardData.getData("text/html");
+                outputElement.value = html_data;
+                prevElement.innerHTML = html_data;
+            });
+        </script>
+        <script>
+            $(function() {
+                $(".lined").linedtextarea();
+            });
+        </script>
+</body>
+
+</html>
